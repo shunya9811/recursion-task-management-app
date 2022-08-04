@@ -5,52 +5,31 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <h1>Task Management App</h1>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <section-list></section-list>
     </v-main>
+
+    <v-footer app
+      color="primary lighten-1"
+      padless
+    >
+      <v-card-text class="py-2 white--text text-center">
+        © {{ new Date().getFullYear() }} — <strong>Task Management App</strong>
+      </v-card-text>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import SectionList from './components/SectionList.vue';
 
 export default {
   name: 'App',
-
   components: {
-    HelloWorld,
+    'section-list': SectionList
   },
 
   data: () => ({
@@ -58,3 +37,9 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+p{
+  text-align: center;
+}
+</style>
