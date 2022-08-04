@@ -29,7 +29,7 @@ import SectionList from './components/SectionList.vue';
 export default {
   name: 'App',
   components: {
-    'section-list': SectionList
+    SectionList
   },
 
   data: () => ({

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import todoList from './ToDoList.vue';
+import todoList from './ToDoList.vue'
 
 export default{
   name: 'SectionList',

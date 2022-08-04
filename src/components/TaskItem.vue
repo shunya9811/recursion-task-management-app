@@ -10,26 +10,33 @@
         >
             <v-text-field
                 solo
-                v-model="task.title"
+                v-model="taskTitle"
                 placeholder="タスク名を入力してください"
                 @keydown.enter="$emit('edit', task, $event)"
             >
             </v-text-field>
-            <v-text-field
+            <!--
+            <div class="text-caption my-2">
+            Section name: {{sectionName}}
+            </div>
+            -->
+            <v-textarea
                 solo
-                v-model="task.body"
-                placeholder="タスク内容を入力してください"
+                v-model="taskContent"
+                label="タスク内容を入力してください"
                 @keydown.enter="$emit('edit', task, $event)"
+                outlined
+                hide-details="false"
             >
-            </v-text-field>
+            </v-textarea>
         </v-card>
         <v-card
             v-else
             class="text-center"
             v-on:dblclick="$emit('edit-fix', task)"
         >
-            <v-card-title>{{ task.title }}</v-card-title>
-            <v-card-text>{{ task.body }}</v-card-text>
+            <v-card-title>{{ taskTitle }}</v-card-title>
+            <v-card-text>{{ taskContent }}</v-card-text>
         </v-card>
         <v-card-actions
             class="d-flex justify-end"
@@ -45,19 +52,14 @@
 <script>
 export default {
     name: 'TaskItem',
+    data() {
+        return {
+            taskTitle: this.task.title,
+            taskContent: this.task.body
+        }
+    },
     props: {
-        task: {
-            type: Object, //データ型
-            required: true, //データ渡し必須
-        },
-        favorite: {
-            type: Boolean,
-            required: true,
-        },
-        check: {
-            type: Boolean,
-            required: true,
-        },
+        task: Object
     },
 };
 </script>

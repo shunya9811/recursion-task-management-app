@@ -3,7 +3,7 @@
         width="320"
         elevation="10"
     >
-        <h2>
+        <h2 class="text-center">
         {{ themeTitle }}
         </h2>
         <v-divider></v-divider>
@@ -14,12 +14,12 @@
             <draggable
                 v-model="tasks"
                 draggable=".item"
+                group="items"
             > 
                 <task-item
-                    v-for="task in tasks"
-                    :key="task.id"
+                    v-for="(task, index) in tasks"
                     :task="task"
-                    class="item"
+                    :key="index"
                     @edit="editTask"
                     @edit-fix="editFixTask"
                     @favorit="favoriteTask"
@@ -36,6 +36,7 @@
             >
                 <v-icon>mdi-plus-circle</v-icon>タスクを追加
             </v-card>
+            <!--セクション消去のボタンをつくる-->
         </v-hover>
     </v-card>
 </template>
@@ -60,14 +61,14 @@ export default{
     date(){
         return{
             tasks: [
-                //{
-                //    id: tasks.length+1,
-                //    title: "朝ごはんを食べる",
-                //    body: "基本的には納豆ごはん",
-                //    editable: false,
-                //    favorite: false,
-                //    checked: false
-                //}
+                {
+                    id: todoId++,
+                    title: "朝ごはんを食べる",
+                    body: "基本的には納豆ごはん",
+                    editable: false,
+                    favorite: false,
+                    checked: false
+                },
             ]
         }
     },
@@ -100,8 +101,8 @@ export default{
         checkTask: function(taskObject){
             taskObject.checked = !taskObject.checked;
         },
-        deleteTask: function(task){
-            alert('ko');
+        deleteTask: function(){
+            alert('d');
         }
     }
 
