@@ -31,7 +31,9 @@
           :section="section"
           :key="section.id"
           @delete-section="deleteSection"
-        ></section-item>
+        >
+        <!--keyはv-forのindexにしてはいけない-->
+        </section-item>
       </div>
     </div>
   </div>

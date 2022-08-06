@@ -28,6 +28,7 @@
                     @check="checkTask"
                     @delete-task="deleteTask"
                 >
+                <!--keyはv-forのindexにしてはいけない-->
                 </task-item>
             </draggable>
         </v-list>
