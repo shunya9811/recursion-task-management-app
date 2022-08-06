@@ -9,48 +9,70 @@
         <v-text-field
           label="セクション名を入力"
           solo
-          v-model="themeTitle"
+          v-model="sectionTitle"
         ></v-text-field>
       </v-col>
       <v-btn
         color="primary"
         x-large
         class="mt-2"
-        v-bind:disabled="addToDoListbtnDisaled" 
-        v-on:click="counter += 1, themeTitle = ''"
+        v-bind:disabled="addSectionbtnDisaled" 
+        v-on:click="createSection"
       >
         <v-icon>mdi-plus-circle</v-icon>セクションを追加
       </v-btn>
     </div>
-    <v-list
-      class="d-flex align-start overflow-x-auto pa-2"
+    <div
+      class="d-flex flex-nowrap overflow-x-auto"
     >
-        <todo-list
-            v-for="i in counter"
-            v-bind:key="i"
-            :themeTitle="themeTitle"
-        ></todo-list>
-    </v-list>
+      <div class="d-flex align-start">
+        <section-item
+          v-for="section in sections"
+          :section="section"
+          :key="section.id"
+          @delete-section="deleteSection"
+        ></section-item>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import todoList from './ToDoList.vue'
+import SectionItem from './SectionItem.vue'
+import {Section} from '../class.js'
+
+
+let sectionId = 0;
 
 export default{
   name: 'SectionList',
   components: {
-    todoList
+    SectionItem
   },
   data(){
     return{
-      themeTitle: '',
-      counter: 0
+      sectionTitle: '',
+      sections: []
     }
   },
   computed: {
-    addToDoListbtnDisaled: function(){
-      return this.themeTitle === "";
+    addSectionbtnDisaled: function(){
+      return this.sectionTitle === "";
+    }
+  },
+  methods: {
+    createSection() {
+      let list = new Section(sectionId, this.sectionTitle, []);
+      sectionId++;
+      this.sections.push(list);
+      this.sectionTitle = "";
+    },
+    deleteSection(sectionObject) {
+      for (let i = 0; i < this.sections.length; i++){
+        if (this.sections[i].id == sectionObject.id){
+          this.sections.splice(i, 1);
+        }
+      }
     }
   }
 };

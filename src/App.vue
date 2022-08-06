@@ -32,9 +32,11 @@ export default {
     SectionList
   },
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      //
+    }
+  },
 };
 </script>
 
