@@ -1,6 +1,11 @@
 module.exports = {
-  transpileDependencies: ["vuetify"],
-  outputDir: "dist",
-  assetsDir: "./",
-  publicPath: "./",
-};
+  transpileDependencies: [
+    'vuetify'
+  ],
+  // publicPath: process.env.NODE_ENV === 'production'
+  //   ?'/task-management-app/'
+  //   :'/'
+  publicPath: './',
+  outputDir: 'dist/',
+  // assetsDir: './',
+}
