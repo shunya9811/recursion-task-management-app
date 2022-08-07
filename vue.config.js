@@ -1,5 +1,6 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/weather-app/'   //任意
-    : '/'
-}
+  transpileDependencies: ["vuetify"],
+  outputDir: "docs",
+  assetsDir: "./",
+  publicPath: "./",
+};
