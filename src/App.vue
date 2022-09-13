@@ -31,12 +31,6 @@ export default {
   components: {
     SectionList
   },
-
-  data() {
-    return {
-      //
-    }
-  },
 };
 </script>
 

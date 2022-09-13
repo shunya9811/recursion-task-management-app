@@ -11,14 +11,14 @@
                 solo
                 v-model="taskTitle"
                 placeholder="タスク名を入力してください"
-                @keydown.enter="$emit('edit', task, $event)"
+                @keydown.enter="$emit('edit', task, 'title', $event)"
             >
             </v-text-field>
             <v-textarea
                 solo
                 v-model="taskBody"
                 label="タスク内容を入力してください"
-                @keydown.enter="$emit('edit', task, $event)"
+                @keydown.enter="$emit('edit', task, 'body', $event)"
                 outlined
                 hide-details="false"
             >
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { Task } from '@/class';
 
 export default {
     name: 'TaskItem',
@@ -53,7 +54,7 @@ export default {
         }
     },
     props: {
-        task: Object
+        task: Task
     },
 };
 </script>

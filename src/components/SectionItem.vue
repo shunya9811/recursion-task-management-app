@@ -16,6 +16,7 @@
                 v-model="taskArray"
                 draggable=".item"
                 group="items"
+                
             > 
                 <task-item
                     v-for="task in taskArray"
@@ -55,7 +56,7 @@
 <script>
 import TaskItem from './TaskItem.vue'
 import draggable from 'vuedraggable'
-import {Task} from '../class.js'
+import {Section, Task} from '../class.js'
 
 
 let taskId = 0;
@@ -63,7 +64,7 @@ let taskId = 0;
 export default{
     name: 'ToDoList',
     props: {
-        section: Object
+        section: Section
     },
     components: {
         TaskItem,
@@ -80,11 +81,15 @@ export default{
             let task = new Task(taskId, "", "", true, false, false);
             taskId++;
             this.taskArray.push(task);
-
         },
-        editTask: function(taskObject, event){
+        editTask: function(taskObject, type, event){
             if (event.keyCode == 13){
                 taskObject.editable = !taskObject.editable;
+                if (type == 'title'){
+                    taskObject.title = event.target.value
+                } else {
+                    taskObject.body = event.target.value
+                }
             }
         },
         editFixTask: function(taskObject){
@@ -103,7 +108,7 @@ export default{
                     this.taskArray.splice(i, 1);
                 }
             }
-        }
+        },
     }
 
 };
