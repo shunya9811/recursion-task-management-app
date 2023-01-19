@@ -83,9 +83,9 @@ export default{
             this.taskArray.push(task);
         },
         editTask: function(taskObject, type, event){
-            if (event.keyCode == 13){
+            if (event.keyCode === 13){
                 taskObject.editable = !taskObject.editable;
-                if (type == 'title'){
+                if (type === 'title'){
                     taskObject.title = event.target.value
                 } else {
                     taskObject.body = event.target.value
